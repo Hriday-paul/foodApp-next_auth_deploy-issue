@@ -1,14 +1,10 @@
 //navbarss
 'use client';
 
-
 import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import Bars3 from '../Icons/Bars3'
 import {signOut, useSession} from "next-auth/react";
-import ShoppingCart from '../Icons/ShoppingCart';
-import { CartContext } from '../Provider/AppContext';
 
 
 function AuthLinks({status, userName}) {
@@ -43,8 +39,7 @@ export default function Navbar() {
   //console.log(session,"session")
   const status = session?.status;
   //console.log(status, "status")
-  const { cartProducts } = useContext(CartContext);
-  //console.log(cartProducts, "cartProducts==============================")
+  
   const userData = session.data?.user;
   let userName = userData?.name || userData?.email;
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -61,17 +56,13 @@ export default function Navbar() {
         </Link>
         <div className="flex gap-8 items-center">
           <Link href={'/cart'} className="relative">
-            <ShoppingCart />
-            {cartProducts?.length > 0 && (
-              <span className="absolute -top-2 -right-4 bg-emerald-500 text-white text-xs py-1 px-1 rounded-full leading-3">
-            {cartProducts.length}
-          </span>
-            )}
+            
+            
           </Link>
           <button
             className="p-1 border"
             onClick={() => setMobileNavOpen(prev => !prev)}>
-            <Bars3 />
+            
           </button>
         </div>
       </div>
@@ -99,12 +90,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-4 text-gray-500 font-semibold">
           <AuthLinks status={status} userName={userName} />
           <Link href={'/cart'} className="relative">
-            <ShoppingCart />
-            {cartProducts?.length > 0 && (
-              <span className="absolute -top-2 -right-4 bg-emerald-500 text-white text-xs py-1 px-1 rounded-full leading-3">
-            {cartProducts.length}
-          </span>
-            )}
+            
           </Link>
         </nav>
       </div>

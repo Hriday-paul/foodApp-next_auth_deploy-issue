@@ -75,7 +75,7 @@ function Registration() {
                 or login with provider
             </div>
             <button
-                onClick={() => signIn('google')}
+                onClick={() => signIn('google', {callbackUrl : '/'})}
                 className="flex gap-4 justify-center max-w-xs mx-auto">
                 <Image src={'/google.png'} alt={''} width={24} height={24} />
                 Login with google
